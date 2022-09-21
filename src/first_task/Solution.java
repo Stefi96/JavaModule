@@ -19,7 +19,7 @@ public class Solution {
             }
         }
 
-        int max = Integer.MAX_VALUE;
+        int max = Integer.MAX_VALUE; //2147483647
 
         for (Map.Entry<String,Integer> set : map.entrySet()){
             if ((count_letter(s, set.getKey())/set.getValue()) < max){

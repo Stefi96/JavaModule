@@ -1,5 +1,6 @@
 package first_task;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -42,16 +43,52 @@ public class Solution {
     }
 
     public static void main(String[] args) {
-        String string = "BAONXXOLL";
-        String word = "BALLON";
+
+        String string = "";
+        String word = "";
+
+        File file1 = new File("C:\\Users\\stefanve\\Documents\\JavaModule\\string.txt");
+        File file2 = new File("C:\\Users\\stefanve\\Documents\\JavaModule\\word.txt");
+        try {
+            BufferedReader br1 = new BufferedReader(new FileReader(file1));
+            String st1;
+            StringBuilder stringBuilder = new StringBuilder();
+            while ((st1 = br1.readLine()) != null)
+                    stringBuilder.append(st1);
+            string = stringBuilder.toString();
+
+            BufferedReader br2 = new BufferedReader(new FileReader(file2));
+            String st2;
+            StringBuilder wordBuilder = new StringBuilder();
+            while ((st2 = br2.readLine()) != null)
+                wordBuilder.append(st2);
+            word = wordBuilder.toString();
+        } catch(FileNotFoundException e) {
+            System.out.println("Fajl ne postoji");
+        }
+        catch (IOException e){
+            System.out.println("Probelm sa učitavanjem fajlova.");
+        }
+
         int num = numAppeared(string,word);
+        String outputString = "";
         switch (num) {
             case (0):
-                System.out.println("U stringu: " + string + " se ne moze pronaci rec: " + word + " ukupno " + numAppeared(string, word) + " puta.");
+                outputString += "U stringu: " + string + " se ne moze pronaci rec: " + word + " ukupno " + numAppeared(string, word) + " puta.";
             case (1):
-                System.out.println("U stringu: " + string + " se moze pronaci rec: " + word + " ukupno " + numAppeared(string, word) + " put.");
+                outputString += "U stringu: " + string + " se moze pronaci rec: " + word + " ukupno " + numAppeared(string, word) + " put.";
             default:
-                if (num > 1) System.out.println("U stringu: " + string + " se moze pronaci rec: " + word + " ukupno " + numAppeared(string, word) + " puta.");
+                if (num > 1) outputString += "U stringu: " + string + " se moze pronaci rec: " + word + " ukupno " + numAppeared(string, word) + " puta.";
+        }
+
+        try {
+            FileWriter myWriter = new FileWriter("output.txt");
+            myWriter.write(outputString);
+            myWriter.close();
+            System.out.println("Uspešno upisan rezultat.");
+        } catch (IOException e) {
+            System.out.println("Došlo je do greške prilikom upisa rezultata.");
+            e.printStackTrace();
         }
     }
 

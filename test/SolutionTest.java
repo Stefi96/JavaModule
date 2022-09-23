@@ -8,7 +8,7 @@ class SolutionTest {
 
     @Test
     void count_letter() {
-        System.out.println("Poceo test");
+        System.out.println("Poceo test!");
         Assertions.assertEquals(1, Solution.count_letter("stefan","a"));
     }
 

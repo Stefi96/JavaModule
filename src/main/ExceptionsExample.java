@@ -1,4 +1,4 @@
-package first_task;
+package main;
 
 public class ExceptionsExample {
 
